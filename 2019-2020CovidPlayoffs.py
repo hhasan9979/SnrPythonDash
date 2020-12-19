@@ -18,7 +18,6 @@ import seaborn as sns
 
 ########
 dff = pd.read_csv("NBAPlayerWinProbability1.csv")
-#dff = dff[dff['state_name']=='Maharashtra']
 dff = dff.groupby(['Team', 'Player'],as_index=False)[['WPA','SH','TO','FT']].sum()
 print (dff[:5])
 
@@ -27,23 +26,18 @@ barchart = px.bar(
     data_frame=dff,
     x="Team",
     y="WPA",
-    color="Player",               # differentiate color of marks
-    opacity=0.9,                  # set opacity of markers (from 0 to 1)
-    orientation="v",              # 'v','h': orientation of the marks
-    barmode='relative',           # in 'overlay' mode, bars are top of one another.
-                                  # in 'group' mode, bars are placed beside each other.
-                                  # in 'relative' mode, bars are stacked above (+) or below (-) zero.
-    #----------------------------------------------------------------------------------------------
-
+    color="Player",
+    opacity=0.9,
+    orientation="v",
+    barmode='relative',
+                  
 
     labels={"WPA":"Win Probability Added",
-    "Player":"Player"},           # map the labels of the figure
-    title='Win Probability Added for Each Team', # figure title
-    width=1400,                   # figure width in pixels
-    height=720,                   # figure height in pixels
-    template='presentation',            # 'ggplot2', 'seaborn', 'simple_white', 'plotly',
-                                  # 'plotly_white', 'plotly_dark', 'presentation',
-
+    "Player":"Player"},
+    title='Win Probability Added for Each Team',
+    width=1400,
+    height=720,
+    template='presentation',            
 
 #pio.show(barchart)
 )
